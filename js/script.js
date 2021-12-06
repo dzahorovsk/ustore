@@ -52,3 +52,22 @@ function displayFilter() {
     document.querySelector('.menu').classList.toggle('show');
 }
 
+// функции отображения продуктов в строку или блоком
+
+// function displayString() {
+//     document.querySelector('.sort-string').classList.remove('sort-noactive');
+//     document.querySelector('.sort-string').classList.add('sort-active');
+//     document.querySelector('.sort-block').classList.remove('sort-active'); 
+//     document.querySelector('.sort-block').classList.add('sort-noactive');
+//     document.getElementById('tov').classList.remove('goods');
+//     document.getElementById('tov').classList.add('goods-string');
+// }
+
+// function displayBlock() {
+//     document.querySelector('.sort-block').classList.remove('sort-noactive');
+//     document.querySelector('.sort-block').classList.add('sort-active');
+//     document.querySelector('.sort-string').classList.remove('sort-active');
+//     document.querySelector('.sort-string').classList.add('sort-noactive');
+//     document.getElementById('tov').classList.remove('goods-string');
+//     document.getElementById('tov').classList.add('goods');
+// }

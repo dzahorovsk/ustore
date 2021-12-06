@@ -4,119 +4,120 @@ let products = [
         'cost': 19499,
         'img': 'assets/product/samsung42.jpg',
         'sklad': 10,
-        'type': 'samsung',
+        'type': 'Samsung',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },
     {
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 0,
-        'type': 'samsung',
+        'name': 'Телевизор 48" LG OLED48C14LB Black',
+        'cost': 32000,
+        'img': 'assets/product/lg48.jpg',
+        'sklad': 5,
+        'type': 'LG',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },
     {
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
+        'name': "Телевизор Kivi 32H740LW",
+        'cost': 6000,
+        'img': 'assets/product/kivi32.jpg',
+        'sklad': 5,
+        'type': 'Kivi',
         'tag': 1,
         'smart': false,
         'display': 55,
         'wifi': true,
     },
     {
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
+        'name': 'Телевизор 43" Xiaomi Mi TV P1 43 Black',
+        'cost': 11999,
+        'img': 'assets/product/xiaomi32.jpg',
         'sklad': 10,
-        'type': 'samsung',
+        'type': 'Xiaomi',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': false,
     },
     {
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
+        'name': 'Телевизор 75" Samsung QE75Q70AAUXUA Black',
+        'cost': 74999,
         'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
+        'sklad': 0,
+        'type': 'Samsung',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },{
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
+        'name': "Телевизор Xiaomi Mi TV 4A 32",
+        'cost': 12900,
+        'img': 'assets/product/xiaomi32.jpg',
+        'sklad': 3,
+        'type': 'Xiaomi',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },{
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
+        'name': "LG",
+        'cost': 14000,
+        'img': 'assets/product/lg48.jpg',
+        'sklad': 8,
+        'type': 'LG',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },{
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
+        'name': "LG",
+        'cost': 4000,
+        'img': 'assets/product/lg48.jpg',
+        'sklad': 1,
+        'type': 'LG',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },{
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
+        'name': "Samsung",
+        'cost': 11000,
         'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
+        'sklad': 0,
+        'type': 'Samsung',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },{
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
+        'name': "Samsung",
+        'cost': 11000,
         'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },{
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'samsung',
+        'sklad': 5,
+        'type': 'Samsung',
         'tag': 1,
         'smart': true,
         'display': 55,
         'wifi': true,
     },
-]
+    {
+        'name': "Samsung",
+        'cost': 11000,
+        'img': 'assets/product/samsung42.jpg',
+        'sklad': 5,
+        'type': 'Samsung',
+        'tag': 1,
+        'smart': true,
+        'display': 55,
+        'wifi': true,
+    },
+];
 
-let newProduct; 
+let newProduct = JSON.parse(JSON.stringify(products));
 
 let page = document.querySelector('#tov');
 let pagination = document.querySelector('#stran');
@@ -124,18 +125,47 @@ let currentPage = 1;
 let notesonPage = 6;
 let arrPageButton = [];
 let count = 0;
-
+let block = true;
 
 // функция принимающая массив объектов - изначально должна вызываться после проверки локал-сторедж
 // на предмет сосдержания строки или после нажатия клавиш применения фильтров и сортировки
 
-showAll(products);
+showAll(newProduct);
 
 // ------------------------------------------------------------------------------------------------
 function showAll(pr) {
-    newProduct = JSON.parse(JSON.stringify(pr));
-    addPageButton(newProduct);
+    addPageButton(pr);
     showPage(arrPageButton[0]);
+}
+
+// -------------------------------- фильтры -------------------------------------------------------
+function toClear() {
+    newProduct = JSON.parse(JSON.stringify(products));
+    showAll(newProduct); 
+}
+
+// кнопка применить фильтр
+function allFilter() {
+    newProduct = JSON.parse(JSON.stringify(products));
+    selectFilter(newProduct);
+}
+
+// функция обработки фильтров 
+
+function selectFilter(arrPr) {
+    let temp = [];
+    arrPr.forEach((item) => {
+        // проверка фильтров и формирование массива объектов удовлетворяющего всем условиям, пока только одному :)
+        // остальные нужно тянуть с формы, когда она будет готова
+        if (item.type === 'Samsung') {
+            temp.push(item);
+        }
+        // if (item.type === 'LG') {
+        //     temp.push(item);
+        // }
+    });
+    newProduct = temp;
+    showAll(newProduct);
 }
 
 
@@ -159,6 +189,9 @@ function addPageButton(sortProduct) {
     document.querySelector('.page-nav-next').addEventListener('click', nextPage);    
     if (count === 1) {
         document.querySelector('.pages').style.display = "none";
+    }
+    else {
+        document.querySelector('.pages').style.display = "flex";
     }
 }
 
@@ -198,27 +231,16 @@ function showPage(item) {
     let notes = newProduct.slice(start, end);
     for (let note of notes) {
         let div = document.createElement('div');
-        div.setAttribute('class', 'p1');
-        page.appendChild(div);
         let div_product = document.createElement('div');
-        div_product.setAttribute('class', 'product');
-        div.appendChild(div_product);
-        // фото товара
+         // фото товара
         let product_img = document.createElement('div');
-        product_img.setAttribute('class', 'product-img');
-        div_product.appendChild(product_img);
         let imgItems = document.createElement('img');
-        imgItems.setAttribute('src', `${note.img}`);
-        imgItems.setAttribute('id', 'images');
-        product_img.appendChild(imgItems);
         // название товара
         let product_name = document.createElement('div');
-        product_name.setAttribute('class', 'product-name');
-        product_name.innerHTML = note.name;
-        div_product.appendChild(product_name);
+        // контейнер цены и кнопки в корзину
+        let product_footer = document.createElement('div');
         // наличие товара
         let product_available = document.createElement('div');
-        product_available.setAttribute('class', 'product-available');
         if (note.sklad > 0) {
             product_available.innerHTML = 'Есть в наличии';
             product_available.style.color = 'green';
@@ -227,10 +249,41 @@ function showPage(item) {
             product_available.innerHTML = 'Нет в наличии';
             product_available.style.color = 'red';
         }
-        div_product.appendChild(product_available);
-        // контейнер цены и кнопки в корзину
-        let product_footer = document.createElement('div');
-        product_footer.setAttribute('class', 'product-footer');
+        if (block) {
+            div.setAttribute('class', 'p1');
+            div_product.setAttribute('class', 'product');
+            product_img.setAttribute('class', 'product-img');
+            imgItems.setAttribute('src', `${note.img}`);
+            imgItems.setAttribute('id', 'images');
+            div_product.appendChild(product_img);
+            product_img.appendChild(imgItems);
+            product_name.setAttribute('class', 'product-name');
+            product_name.innerHTML = note.name;
+            div_product.appendChild(product_name);
+            product_available.setAttribute('class', 'product-available');
+            product_footer.setAttribute('class', 'product-footer');
+            div_product.appendChild(product_available);
+            page.appendChild(div);
+            div.appendChild(div_product);
+        }
+        else {
+            div.setAttribute('class', 'p1-string');
+            div_product.setAttribute('class', 'product-string');
+            page.appendChild(div);
+            div.appendChild(div_product);
+            product_img.setAttribute('class', 'product-img-string');
+            imgItems.setAttribute('src', `${note.img}`);
+            imgItems.setAttribute('id', 'images');
+            product_name.setAttribute('class', 'product-name-string');
+            product_name.innerHTML = note.name;
+            product_available.setAttribute('class', 'product-available');
+            product_footer.setAttribute('class', 'product-footer-string');
+            div_product.appendChild(product_img);
+            product_img.appendChild(imgItems);
+            div_product.appendChild(product_name);
+            product_name.appendChild(product_available);
+        }
+        
         div_product.appendChild(product_footer);
         // цена товара
         let product_price = document.createElement('div');
@@ -275,4 +328,24 @@ function showPage(item) {
         product_wifi.innerHTML = (note.wifi ? `Wi-Fi:  <span>Есть</span>` : `Wi-Fi:  <span>Нет</span>`);
         div_product_desc.appendChild(product_wifi);
     }  
+}
+function displayBlock() {
+    block = true;
+    showAll(products);
+    document.querySelector('.sort-block').classList.remove('sort-noactive');
+    document.querySelector('.sort-block').classList.add('sort-active');
+    document.querySelector('.sort-string').classList.remove('sort-active');
+    document.querySelector('.sort-string').classList.add('sort-noactive');
+    document.getElementById('tov').classList.remove('goods-string');
+    document.getElementById('tov').classList.add('goods');
+}
+function displayString() {
+    block = false;
+    showAll(products);
+    document.querySelector('.sort-string').classList.remove('sort-noactive');
+    document.querySelector('.sort-string').classList.add('sort-active');
+    document.querySelector('.sort-block').classList.remove('sort-active'); 
+    document.querySelector('.sort-block').classList.add('sort-noactive');
+    document.getElementById('tov').classList.remove('goods');
+    document.getElementById('tov').classList.add('goods-string');
 }

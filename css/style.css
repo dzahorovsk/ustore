@@ -321,11 +321,9 @@
     width: 30px;
     height: 22px;
     min-width: 30px;
-    border: 1px solid lightgray;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     border-right: none;
-    color: rgb(63, 63, 63);
     font-family: 'Lato', sans-serif;
     text-align: center;
     font-size: 14px;
@@ -339,15 +337,25 @@
     min-width: 30px;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    color: white;
     font-family: 'Lato', sans-serif;
     text-align: center;
     font-size: 14px;
     padding-top: 4px;
+    
+}
+.sort-active {
+    background: white;
+    border: 1px solid lightgray;
+    color: rgb(63, 63, 63);
+}
+.sort-noactive {
+    color: white;
     background: #2d3c49;
     border: 1px solid #2d3c49;
 }
-
+.sort-noactive:hover {
+    transform: scale(1.05);
+}
 /* ---------------------главная секция--------------------------- */
 .main {
     display: flex;
@@ -401,7 +409,7 @@
 .filterButtons {
     display: block;
     max-width: 100%;
-    height: 100%;
+    max-height: 100%;
     margin: 10px 0 10px 0;
 }
 .clearFilter {
@@ -416,7 +424,7 @@
     text-align: center;
     font-size: 14px;
     padding-top: 4px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .addFilter {
     display: inline-block;
@@ -429,11 +437,58 @@
     text-align: center;
     font-size: 14px;
     padding-top: 4px;
-    margin-left: 10px;
+    margin-left: 15px;
     background: #2d3c49;
     border: 1px solid #2d3c49;
 }
 
+.filter-header {
+    font-size: 14px;
+    color: rgb(63, 63, 63);
+    font-family: 'Lato', sans-serif;
+    border-top: 1px solid lightgray;
+    margin: 10px 15px 10px 7px;
+    padding-top: 10px;
+}
+/* ------------ блок фильтрации по наличию -------------------- */
+.filter-sklad {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 220px;
+    height: 100px;
+    margin: 10px 5px 10px 5px;
+    font-size: 14px;
+    color: rgb(63, 63, 63);
+    font-family: 'Lato', sans-serif;
+    border: 1px dotted red;
+    padding-top: 5px;
+}
+
+
+/* -------------  блок фильтрации по цене ----------------- */
+.filter-cost {
+    display: block;
+    width: 220px;
+    height: 100px;
+    margin: 10px 5px 10px 5px;
+    font-size: 14px;
+    color: rgb(63, 63, 63);
+    font-family: 'Lato', sans-serif;
+    border: 1px dotted blue;
+    padding-top: 5px;
+}
+.filter-type {
+    display: block;
+    width: 220px;
+    height: 200px;
+    font-size: 14px;
+    margin: 10px 5px 10px 5px;
+    color: rgb(63, 63, 63);
+    font-family: 'Lato', sans-serif;
+    border: 1px dotted green;
+    padding-top: 5px;
+}
 
 /* ---------------------каталог товаров ------------------------ */
 .showcase {
@@ -446,13 +501,21 @@
     width: 100%;
     margin-bottom: 20px;
 }
+
 /* ----------- блок витрины товаров --------------------------- */
 .goods {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 350px 350px;
     margin-top: 10px;
 }
+.goods-string {
+    display: grid;
+    grid-template-columns: 97%;
+    grid-template-rows: 1fr;
+    margin-top: 5px;
+}
+
 /* ------------- контейнер товара на витрине------------------------------- */
 .p1 {
     z-index: 1;
@@ -462,6 +525,16 @@
     border-left: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     padding: 5px;
+    background: white;
+    min-width: 240px;
+} 
+.p1-string {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
     background: white;
     min-width: 240px;
 }
@@ -476,8 +549,25 @@
     height: 342px;
     width: 100%;
 }
+.product-string {
+    z-index: 5;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 160px;
+    width: 100%;
+}
 /* ------------- фото товара ------------------------------------ */
 .product-img {
+    display: flex;
+    justify-content: center;
+    width: 240px;
+    min-width: 240px;
+    height: 150px;
+}
+.product-img-string {
     display: flex;
     justify-content: center;
     width: 240px;
@@ -496,6 +586,17 @@
     min-width: 240px;
     height: 140px;
     margin-top: 10px;
+}
+.product-name-string {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    padding-top: 4px;
+    width: 400px;
+    height: 100px;
+    margin-bottom: 30px;
 }
 /* ---------------- наличие товара ----------------------------- */
 .product-available {
@@ -516,6 +617,15 @@
     min-width: 240px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.product-footer-string {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80px;
+    min-width: 80px;
+    height: 100px;
+    margin: 10px 10px 30px 0;
 }
 /*  ------------------ цена ------------------------------------ */
 .product-price {
@@ -578,6 +688,11 @@
     height: 400px;
     background: white;
     border: 1px solid lightgray;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+.p1-string:hover {
+    z-index: 5;
+    background: white;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 .p1:hover .product-desc {
@@ -804,6 +919,25 @@
         position: absolute;
         top: 0;
     }
+    .goods-string {
+        grid-template-rows: 1fr;
+    }
+    .product-string {
+        height: 110px;
+    }
+    .product-img-string {
+        width: 160px;
+        min-width: 160px;
+        height: 100px;
+    }
+    .product-name-string {
+        height: 90px;
+        margin-bottom: 5px;
+    }
+    .product-footer-string {
+        height: 80px;
+        margin: 0 5px 10px 0;
+    }
 }
 
 @media screen and (max-width: 460px){
@@ -830,6 +964,29 @@
     }
     .wood-home span{
         font-size: 10px;
+    }
+    .goods-string {
+        grid-template-rows: 1fr;
+    }
+    .p1-string {
+        min-width: 320px;
+        height: 90px;
+    }
+    .product-img-string {
+        width: 128px;
+        min-width: 128px;
+        height: 80px;
+    }
+    .product-name-string {
+        height: 70px;
+        font-size: 11px;
+    }
+    .product-available {
+        font-size: 8px;
+    }
+    .product-footer-string {
+        height: 70px;
+        margin-right: 20px;
     }
 }
 /* --------- классы отображения ---------------- */

@@ -72,8 +72,8 @@
                 <!-- контейнер с блоком выбора сортировки -->
                 <div class="right-top">
                     <div class="sort">сортировка</div>
-                    <div class="sort-string">--</div>
-                    <div class="sort-block">||</div>
+                    <div id="string" class="sort-string sort-noactive" onclick="displayString()">--</div>
+                    <div id="block" class="sort-block sort-active" onclick="displayBlock()">||</div>
                 </div>
             </div>
         </div>
@@ -91,15 +91,22 @@
                 <div class="menu">
                     <!-- иконка закрытия меню -->
                     <div id="closeFilter" onclick="displayFilter()">&#9746</div>
-                    <!-- блок фильтров -->
-                    <!-- ниже контейнер для блока фильтров -->
-                    <div></div>
                     <!-- блок кнопок очистки и применения фильтров -->
                     <div class="filterButtons">
-                        <div class="clearFilter">Очистить</div>
-                        <div class="addFilter">Применить</div>
+                        <div class="clearFilter" onclick="toClear()">Очистить</div>
+                        <div class="addFilter" onclick="allFilter()">Применить</div>
                     </div>
-                    <div></div>
+                    <!-- контейнер для блока фильтров -->
+                    <!-- контейнер фильтрации по наличию товаров -->
+                    <div class="filter-header">Наличие: </div>
+                    <div class="filter-sklad"></div>
+                    <!-- контейнер фильтрации по цене -->
+                    <div class="filter-header">Цена:</div>
+                    <div class="filter-cost"></div>
+                    <!-- контейнер фильтрации по производителю -->
+                    <div class="filter-header">Производитель:</div>
+                    <div class="filter-type"></div>
+
                 </div>
                 <!-- каталог товаров -->
                 <div class="showcase">
