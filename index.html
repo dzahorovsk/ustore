@@ -8,6 +8,7 @@
     <meta name="author" content="Dmitro Zahorovskiy"/>
     <title>ON/OF store</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/filters.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/icon/icons8-developer-96.png" type="image/png">
@@ -53,7 +54,12 @@
                 </div>
                 <div class="search-button">Найти</div>  
                 <div class="search-button-small">&#128269</div>
-                <div class="cart"></div>
+                <div class="cart" onclick="displayCart()">
+                    <div class="iconCart">
+                        <img src="assets/icon/cart.png" alt="">
+                        <div class="countCart"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- блок пути каталога товаров -->
@@ -71,11 +77,27 @@
                 </div>
                 <!-- контейнер с блоком выбора сортировки -->
                 <div class="right-top">
-                    <div class="sort">сортировка</div>
+                    <div class="sort">
+                        <div id="sort-select" onclick="sortClick()"></div>
+                        <ul class="sort-box">
+                            <li id="sort" onclick="tagClick()"></li>
+                            <li id="sort" onclick="abcClick()"></li>
+                            <li id="sort" onclick="ascClick()"></li>
+                            <li id="sort" onclick="descClick()"></li>
+                        </ul>
+                    </div>
                     <div id="string" class="sort-string sort-noactive" onclick="displayString()">--</div>
                     <div id="block" class="sort-block sort-active" onclick="displayBlock()">||</div>
                 </div>
             </div>
+        </div>
+        <div id="cartBox" class="cart-boxx">
+            <div id="closeCart" onclick="closeCart()">&#9746</div>
+            <div class="cart-top">Корзина</div>
+            <div class="cart-main"></div>
+            <div class="cart-bottom">
+                <div class="clearCart-active clearCart" onclick="clearLocalCart()">Очистить корзину</div>
+            </div>    
         </div>
         <!-- главная секция -->
         <section class="main">
@@ -98,42 +120,37 @@
                     </div>
                     <!-- контейнер для блока фильтров -->
                     <!-- контейнер фильтрации по наличию товаров -->
-                    <div class="filter-header">Наличие: </div>
-                    <div class="filter-sklad"></div>
+                    <div class="filter-header">Наличие:</div>
+                    <div class="filter-sklad">
+                        <form id="filter-sklad">
+                            <input type="radio" id="allGoods" name="goods" value="allGoods" checked>
+                            <label for="allGoods">Все товары</label><br>
+                            <input type="radio" id="avGoods" name="goods" value="avGoods">
+                            <label for="avGoods">Товары в наличии</label><br>
+                          </form>
+                    </div>
                     <!-- контейнер фильтрации по цене -->
                     <div class="filter-header">Цена:</div>
-                    <div class="filter-cost"></div>
+                    <div class="filter-cost" id="filter-cost">
+                        <div class="price-slider"><span>
+                            <input id="get_num" value="3200" type="number" min="3200" max="100000"/> -
+                            <input id="get_num1" value="100000" type="number"  min="3200" max="100000"/></span>
+                          <input value="3200" min="3200" max="100000" step="100" type="range"/>
+                          <input value="100000" min="3200" max="100000" step="100" type="range"/>
+                        </div>
+                    </div>
                     <!-- контейнер фильтрации по производителю -->
                     <div class="filter-header">Производитель:</div>
                     <div class="filter-type"></div>
-
+                    <div id="add" class="btn">Add</div>
                 </div>
                 <!-- каталог товаров -->
                 <div class="showcase">
                     <div id="tov" class="goods">
-                        
-
-
-                        <!-- <div class="p1">
-                            <div class="product">
-                                <div class="product-img"></div>
-                                <div class="product-name"></div>
-                                <div class="product-available"></div>
-                                <div class="product-footer">
-                                    <div class=""></div>
-                                </div>
-                            </div>
-                            <div class="product-desc"></div>
-                        </div> -->
-
-
-
+                    
                     </div>
                     <div id="stran" class="pages">
-                        <!-- <div class="page-nav">&lt</div>
-                        <div class="select-page"></div>
-                        <div class="page"></div>
-                        <div class="page-nav-active">&gt</div> -->
+                        
                     </div>
                 </div>
             </div>
@@ -166,7 +183,12 @@
             </div>
         </footer>
     </div> 
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/sort.js"></script>
     <script src="js/product.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/filters.js"></script>
 </body>
 </html>

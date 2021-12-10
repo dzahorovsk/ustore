@@ -1,175 +1,36 @@
-let products = [
-    {
-        'name': 'Телевизор 55" Samsung UE55AU7100UXUA Black',
-        'cost': 19499,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 10,
-        'type': 'Samsung',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },
-    {
-        'name': 'Телевизор 48" LG OLED48C14LB Black',
-        'cost': 32000,
-        'img': 'assets/product/lg48.jpg',
-        'sklad': 5,
-        'type': 'LG',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },
-    {
-        'name': "Телевизор Kivi 32H740LW",
-        'cost': 6000,
-        'img': 'assets/product/kivi32.jpg',
-        'sklad': 5,
-        'type': 'Kivi',
-        'tag': 1,
-        'smart': false,
-        'display': 55,
-        'wifi': true,
-    },
-    {
-        'name': 'Телевизор 43" Xiaomi Mi TV P1 43 Black',
-        'cost': 11999,
-        'img': 'assets/product/xiaomi32.jpg',
-        'sklad': 10,
-        'type': 'Xiaomi',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': false,
-    },
-    {
-        'name': 'Телевизор 75" Samsung QE75Q70AAUXUA Black',
-        'cost': 74999,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 0,
-        'type': 'Samsung',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },{
-        'name': "Телевизор Xiaomi Mi TV 4A 32",
-        'cost': 12900,
-        'img': 'assets/product/xiaomi32.jpg',
-        'sklad': 3,
-        'type': 'Xiaomi',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },{
-        'name': "LG",
-        'cost': 14000,
-        'img': 'assets/product/lg48.jpg',
-        'sklad': 8,
-        'type': 'LG',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },{
-        'name': "LG",
-        'cost': 4000,
-        'img': 'assets/product/lg48.jpg',
-        'sklad': 1,
-        'type': 'LG',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },{
-        'name': "Samsung",
-        'cost': 11000,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 0,
-        'type': 'Samsung',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },{
-        'name': "Samsung",
-        'cost': 11000,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 5,
-        'type': 'Samsung',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },
-    {
-        'name': "Samsung",
-        'cost': 11000,
-        'img': 'assets/product/samsung42.jpg',
-        'sklad': 5,
-        'type': 'Samsung',
-        'tag': 1,
-        'smart': true,
-        'display': 55,
-        'wifi': true,
-    },
-];
-
-let newProduct = JSON.parse(JSON.stringify(products));
-
 let page = document.querySelector('#tov');
 let pagination = document.querySelector('#stran');
 let currentPage = 1;
 let notesonPage = 6;
 let arrPageButton = [];
-let count = 0;
+let count = 0
 let block = true;
+let countCart = 0;
+
+let cartShow = document.querySelector('.countCart');
+let clearCart = document.querySelector('.clearCart-active');
+
+let data = JSON.parse(JSON.stringify(products));
+let newProduct = JSON.parse(JSON.stringify(products));
+let prodCart = [];
+let notesCart = JSON.parse(JSON.stringify(products));
+
 
 // функция принимающая массив объектов - изначально должна вызываться после проверки локал-сторедж
 // на предмет сосдержания строки или после нажатия клавиш применения фильтров и сортировки
 
+addData();
+checkStorage();
+checkLocalCart();
 showAll(newProduct);
+emptyCart();
 
 // ------------------------------------------------------------------------------------------------
 function showAll(pr) {
+    startSort(pr);
     addPageButton(pr);
     showPage(arrPageButton[0]);
 }
-
-// -------------------------------- фильтры -------------------------------------------------------
-function toClear() {
-    newProduct = JSON.parse(JSON.stringify(products));
-    showAll(newProduct); 
-}
-
-// кнопка применить фильтр
-function allFilter() {
-    newProduct = JSON.parse(JSON.stringify(products));
-    selectFilter(newProduct);
-}
-
-// функция обработки фильтров 
-
-function selectFilter(arrPr) {
-    let temp = [];
-    arrPr.forEach((item) => {
-        // проверка фильтров и формирование массива объектов удовлетворяющего всем условиям, пока только одному :)
-        // остальные нужно тянуть с формы, когда она будет готова
-        if (item.type === 'Samsung') {
-            temp.push(item);
-        }
-        // if (item.type === 'LG') {
-        //     temp.push(item);
-        // }
-    });
-    newProduct = temp;
-    showAll(newProduct);
-}
-
-
-
 
 function addPageButton(sortProduct) {
     count = Math.ceil(sortProduct.length / notesonPage);
@@ -301,8 +162,10 @@ function showPage(item) {
         // кнопка В КОРЗИНУ
         let product_addCart = document.createElement('div');
         product_addCart.innerHTML = 'В корзину';
+        product_addCart.setAttribute('id', `${note.id}`);
         if (note.sklad > 0) {
             product_addCart.setAttribute('class', 'product-cart');
+            product_addCart.addEventListener('click', addToCart);
         }
         else {
             product_addCart.setAttribute('class', 'product-lost');
@@ -328,24 +191,4 @@ function showPage(item) {
         product_wifi.innerHTML = (note.wifi ? `Wi-Fi:  <span>Есть</span>` : `Wi-Fi:  <span>Нет</span>`);
         div_product_desc.appendChild(product_wifi);
     }  
-}
-function displayBlock() {
-    block = true;
-    showAll(products);
-    document.querySelector('.sort-block').classList.remove('sort-noactive');
-    document.querySelector('.sort-block').classList.add('sort-active');
-    document.querySelector('.sort-string').classList.remove('sort-active');
-    document.querySelector('.sort-string').classList.add('sort-noactive');
-    document.getElementById('tov').classList.remove('goods-string');
-    document.getElementById('tov').classList.add('goods');
-}
-function displayString() {
-    block = false;
-    showAll(products);
-    document.querySelector('.sort-string').classList.remove('sort-noactive');
-    document.querySelector('.sort-string').classList.add('sort-active');
-    document.querySelector('.sort-block').classList.remove('sort-active'); 
-    document.querySelector('.sort-block').classList.add('sort-noactive');
-    document.getElementById('tov').classList.remove('goods');
-    document.getElementById('tov').classList.add('goods-string');
 }
