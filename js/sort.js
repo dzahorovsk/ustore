@@ -28,28 +28,32 @@ function tagClick() {
     index = 0;
     document.querySelector('.sort-box').style.display = 'none';
     showSort();
-    newProduct.sort((a, b) => a.tag < b.tag ? 1 : -1);
+    products.sort((a, b) => a.tag < b.tag ? 1 : -1);
+    allFilter();
     showAll(newProduct);
 }
 function abcClick() {
     index = 1;
     document.querySelector('.sort-box').style.display = 'none';
     showSort();
-    newProduct.sort((a, b) => a.name > b.name ? 1 : -1);
+    products.sort((a, b) => a.name > b.name ? 1 : -1);
+    allFilter();
     showAll(newProduct);
 }
 function ascClick() {
     index = 2;
     document.querySelector('.sort-box').style.display = 'none';
     showSort();
-    newProduct.sort((a, b) => a.cost > b.cost ? 1 : -1);
+    products.sort((a, b) => a.cost > b.cost ? 1 : -1);
+    allFilter();
     showAll(newProduct);
 }
 function descClick() {
     index = 3;
     document.querySelector('.sort-box').style.display = 'none';
     showSort();
-    newProduct.sort((a, b) => a.cost < b.cost ? 1 : -1);
+    products.sort((a, b) => a.cost < b.cost ? 1 : -1);
+    allFilter();
     showAll(newProduct);
 }
 

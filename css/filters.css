@@ -37,15 +37,18 @@
 
 /* ----  блок фильтрации по производителю -------- */
 .filter-type {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 220px;
-    height: 200px;
+    max-height: 200px;
     font-size: 14px;
     margin: 10px 5px 10px 5px;
     color: rgb(63, 63, 63);
     font-family: 'Lato', sans-serif;
-    border: 1px dotted green;
     padding-top: 5px;
+}
+.filter-type input {
+  margin:5px 0 10px 0;
 }
 /* ---------- price filtr  -----------*/
 
@@ -164,4 +167,3 @@ input[type=range]::-ms-thumb {
   background: #a1d0ff;
   cursor: pointer;
 }
-  

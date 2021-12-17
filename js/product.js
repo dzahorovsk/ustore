@@ -6,9 +6,12 @@ let arrPageButton = [];
 let count = 0
 let block = true;
 let countCart = 0;
+let totalPrice = 0;
 
 let cartShow = document.querySelector('.countCart');
 let clearCart = document.querySelector('.clearCart-active');
+let innerCart = document.querySelector('.cart-main');
+let allPrice = document.querySelector('.allPrice');
 
 let data = JSON.parse(JSON.stringify(products));
 let newProduct = JSON.parse(JSON.stringify(products));
@@ -27,9 +30,18 @@ emptyCart();
 
 // ------------------------------------------------------------------------------------------------
 function showAll(pr) {
-    startSort(pr);
-    addPageButton(pr);
-    showPage(arrPageButton[0]);
+    if (pr.length > 0) {
+        page.classList.remove('goods-null');
+        startSort(pr);
+        addPageButton(pr);
+        showPage(arrPageButton[0]);
+        showPr();
+    }
+    else { 
+        document.querySelector('.pages').style.display = "none";
+        page.innerHTML = 'Нет товаров удовлетворяющих Вашему запросу!';
+        page.classList.add('goods-null');
+    }
 }
 
 function addPageButton(sortProduct) {
@@ -44,6 +56,7 @@ function addPageButton(sortProduct) {
     for (let item of arrPageButton) {
         item.addEventListener('click', function () {
             showPage(this);
+            showPr();
         });
     }
     document.querySelector('.page-nav-back').addEventListener('click', backPage);
@@ -85,7 +98,11 @@ function showPage(item) {
     else {
         document.querySelector('#next').style.display = "block";
     }
-    let pagenum = +item.innerHTML;
+    showPr();
+}
+function showPr() {
+
+    let pagenum = currentPage;
     let start = (pagenum - 1) * notesonPage;
     let end = start + notesonPage;
     page.innerHTML = '';
@@ -102,6 +119,7 @@ function showPage(item) {
         let product_footer = document.createElement('div');
         // наличие товара
         let product_available = document.createElement('div');
+        product_available.setAttribute('id', `${note.id}_`);
         if (note.sklad > 0) {
             product_available.innerHTML = 'Есть в наличии';
             product_available.style.color = 'green';
@@ -149,6 +167,7 @@ function showPage(item) {
         // цена товара
         let product_price = document.createElement('div');
         product_price.setAttribute('class', 'product-price');
+        product_price.setAttribute('id', `${note.id}__`);
         if (note.sklad > 0) {
             product_price.innerHTML = `${note.cost} &#8372`;
             product_price.style.color = 'black';
